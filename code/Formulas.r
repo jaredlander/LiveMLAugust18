@@ -8,3 +8,14 @@ boros <- tibble::tribble(
     'Bronx', 1455000, 42, 21,
     'Staten Island', 475000, 60, 3
 )
+boros
+
+build.x( ~ Pop, data=boros)
+build.x( ~ Pop + Size, data=boros)
+build.x( ~ Pop * Size, data=boros)
+1600000*23
+build.x( ~ Pop : Size, data=boros)
+build.x( ~ Pop * Size * Random, data=boros)
+
+build.x( ~ Pop + Size, data=boros)
+build.x( ~ Pop + Size - 1, data=boros)
