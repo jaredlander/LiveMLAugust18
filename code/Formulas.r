@@ -19,3 +19,11 @@ build.x( ~ Pop * Size * Random, data=boros)
 
 build.x( ~ Pop + Size, data=boros)
 build.x( ~ Pop + Size - 1, data=boros)
+
+build.x( ~ Boro, data=boros)
+build.x( ~ Boro, data=boros, contrasts=FALSE)
+
+build.x( ~ Pop + Size + Boro, data=boros, contrasts=FALSE)
+build.x( ~ Pop + Size + Boro - 1, data=boros, contrasts=FALSE)
+
+build.x( ~ Pop + Size + Boro - 1, data=boros, contrasts=FALSE, sparse=TRUE)
