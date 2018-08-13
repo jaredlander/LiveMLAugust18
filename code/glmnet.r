@@ -37,3 +37,23 @@ animation::cv.ani(k=10)
 value3 <- cv.glmnet(x=landX_train, y=landY_train, family='gaussian', nfolds=5)
 coefpath(value3)
 plot(value3)
+
+coefplot(value3, lambda='lambda.min', sort='magnitude')
+coefplot(value3, lambda='lambda.1se', sort='magnitude')
+coefplot(value3, lambda='lambda.1se', sort='magnitude') + xlim(-1000, 1000)
+
+value4 <- cv.glmnet(x=landX_train, y=landY_train, family='gaussian',
+                    nfolds=5, alpha=1)
+coefplot(value4, lambda='lambda.1se', sort='magnitude')
+
+value5 <- cv.glmnet(x=landX_train, y=landY_train, family='gaussian',
+                    nfolds=5, alpha=0)
+coefpath(value5)
+plot(value5)
+coefplot(value5, lambda='lambda.1se', sort='magnitude')
+
+value6 <- cv.glmnet(x=landX_train, y=landY_train, family='gaussian',
+                    nfolds=5, alpha=0.6)
+coefpath(value6)
+plot(value6)
+coefplot(value6, lambda='lambda.1se', sort='magnitude')
