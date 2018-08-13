@@ -26,8 +26,8 @@ coefplot(value1, sort='magnitude')
 
 landX_train <- build.x(valueFormula, data=land_train, contrasts=FALSE, sparse=TRUE)
 landX_train
-landY_train <- build.y(alueFormula, data=land_train)
-head(landY_train, n=20)v
+landY_train <- build.y(valueFormula, data=land_train)
+head(landY_train, n=20)
 
 value2 <- glmnet(x=landX_train, y=landY_train, family='gaussian')
 coefpath(value2)
