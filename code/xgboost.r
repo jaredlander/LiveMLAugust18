@@ -158,3 +158,70 @@ xg11 <- xgb.train(
     subsample=0.7, colsample_bytree=0.5
 )
 
+xg12 <- xgb.train(
+    data=xgTrain,
+    objective="binary:logistic",
+    nrounds=1,
+    eval_metric='logloss',
+    watchlist=list(train=xgTrain, validate=xgVal),
+    print_every_n=10,
+    early_stopping_rounds=70,
+    max_depth=8, eta=0.1,
+    subsample=0.7, colsample_bytree=0.5,
+    num_parallel_tree=100
+)
+
+xg13 <- xgb.train(
+    data=xgTrain,
+    objective="binary:logistic",
+    nrounds=100,
+    eval_metric='logloss',
+    watchlist=list(train=xgTrain, validate=xgVal),
+    print_every_n=10,
+    early_stopping_rounds=50,
+    max_depth=8, eta=0.1,
+    subsample=0.7, colsample_bytree=0.5,
+    num_parallel_tree=20
+)
+
+xg14 <- xgb.train(
+    data=xgTrain,
+    objective="binary:logistic",
+    nrounds=2000,
+    eval_metric='logloss',
+    watchlist=list(train=xgTrain, validate=xgVal),
+    print_every_n=10,
+    early_stopping_rounds=50,
+    max_depth=8, eta=0.1,
+    subsample=0.7, colsample_bytree=0.5,
+    nthread=2
+)
+
+xg15 <- xgb.train(
+    data=xgTrain,
+    objective='binary:logistic',
+    eval_metric='logloss',
+    nrounds=1000,
+    watchlist=list(train=xgTrain, validate=xgVal),
+    print_every_n=1,
+    early_stopping_rounds=70,
+    booster='gblinear'
+)
+
+xg16 <- xgb.train(
+    data=xgTrain,
+    objective='binary:logistic',
+    eval_metric='logloss',
+    nrounds=1000,
+    watchlist=list(train=xgTrain, validate=xgVal),
+    print_every_n=1,
+    early_stopping_rounds=70,
+    booster='gblinear',
+    alpha=100, lambda=125
+)
+
+coefplot(xg15, sort='magnitude')
+coefplot(xg16, sort='magnitude')
+
+xgPredictions14 <- predict(xg14, newdata=landX_test, outputmargin=FALSE)
+xgPredictions14 %>% head(n=20)
