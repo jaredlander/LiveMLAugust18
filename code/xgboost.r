@@ -93,3 +93,33 @@ xg6 <- xgb.train(
 dygraph(xg6$evaluation_log)
 xg6$best_iteration
 xg6$best_score
+
+xgb.plot.multi.trees(xg6, feature_names=colnames(landX_train))
+
+xg6 %>% 
+    xgb.importance(feature_names=colnames(landX_train)) %>% 
+    xgb.plot.importance()
+
+
+xg7 <- xgb.train(
+    data=xgTrain,
+    objective="binary:logistic",
+    nrounds=1000,
+    eval_metric='logloss',
+    watchlist=list(train=xgTrain, validate=xgVal),
+    print_every_n=1,
+    early_stopping_rounds=70,
+    max_depth=8
+)
+
+xg8 <- xgb.train(
+    data=xgTrain,
+    objective="binary:logistic",
+    nrounds=1000,
+    eval_metric='logloss',
+    watchlist=list(train=xgTrain, validate=xgVal),
+    print_every_n=1,
+    early_stopping_rounds=70,
+    max_depth=3
+)
+
