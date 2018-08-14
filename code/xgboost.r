@@ -39,3 +39,5 @@ xg1 <- xgb.train(
     nrounds=1
 )
 xg1
+
+xgb.plot.multi.trees(xg1, feature_names=colnames(landX_train))
