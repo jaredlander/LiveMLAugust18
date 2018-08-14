@@ -41,3 +41,20 @@ xg1 <- xgb.train(
 xg1
 
 xgb.plot.multi.trees(xg1, feature_names=colnames(landX_train))
+
+
+xg2 <- xgb.train(
+    data=xgTrain,
+    objective="binary:logistic",
+    nrounds=1,
+    eval_metric='logloss',
+    watchlist=list(train=xgTrain)
+)
+
+xg3 <- xgb.train(
+    data=xgTrain,
+    objective="binary:logistic",
+    nrounds=1,
+    eval_metric='logloss',
+    watchlist=list(train=xgTrain)
+)
