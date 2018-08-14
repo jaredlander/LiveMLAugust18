@@ -54,7 +54,26 @@ xg2 <- xgb.train(
 xg3 <- xgb.train(
     data=xgTrain,
     objective="binary:logistic",
-    nrounds=1,
+    nrounds=100,
     eval_metric='logloss',
-    watchlist=list(train=xgTrain)
+    watchlist=list(train=xgTrain),
+    print_every_n=1
+)
+
+xg4 <- xgb.train(
+    data=xgTrain,
+    objective="binary:logistic",
+    nrounds=300,
+    eval_metric='logloss',
+    watchlist=list(train=xgTrain),
+    print_every_n=1
+)
+
+xg5 <- xgb.train(
+    data=xgTrain,
+    objective="binary:logistic",
+    nrounds=500,
+    eval_metric='logloss',
+    watchlist=list(train=xgTrain, validate=xgVal),
+    print_every_n=1
 )
