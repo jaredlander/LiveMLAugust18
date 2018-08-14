@@ -123,3 +123,14 @@ xg8 <- xgb.train(
     max_depth=3
 )
 
+xg9 <- xgb.train(
+    data=xgTrain,
+    objective="binary:logistic",
+    nrounds=2500,
+    eval_metric='logloss',
+    watchlist=list(train=xgTrain, validate=xgVal),
+    print_every_n=10,
+    early_stopping_rounds=70,
+    max_depth=8, eta=0.1
+)
+
