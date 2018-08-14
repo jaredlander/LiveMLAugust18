@@ -134,3 +134,27 @@ xg9 <- xgb.train(
     max_depth=8, eta=0.1
 )
 
+xg10 <- xgb.train(
+    data=xgTrain,
+    objective="binary:logistic",
+    nrounds=2500,
+    eval_metric='logloss',
+    watchlist=list(train=xgTrain, validate=xgVal),
+    print_every_n=10,
+    early_stopping_rounds=70,
+    max_depth=8, eta=0.1,
+    subsample=0.8
+)
+
+xg11 <- xgb.train(
+    data=xgTrain,
+    objective="binary:logistic",
+    nrounds=2500,
+    eval_metric='logloss',
+    watchlist=list(train=xgTrain, validate=xgVal),
+    print_every_n=10,
+    early_stopping_rounds=70,
+    max_depth=8, eta=0.1,
+    subsample=0.7, colsample_bytree=0.5
+)
+
