@@ -77,3 +77,19 @@ xg5 <- xgb.train(
     watchlist=list(train=xgTrain, validate=xgVal),
     print_every_n=1
 )
+
+xg5$evaluation_log
+dygraph(xg5$evaluation_log)
+
+xg6 <- xgb.train(
+    data=xgTrain,
+    objective="binary:logistic",
+    nrounds=500,
+    eval_metric='logloss',
+    watchlist=list(train=xgTrain, validate=xgVal),
+    print_every_n=1,
+    early_stopping_rounds=70
+)
+dygraph(xg6$evaluation_log)
+xg6$best_iteration
+xg6$best_score
